@@ -12,13 +12,13 @@ def render_index_page():
 @app.route("/emotionDetector")
 def emotion_detector_route():
     ''' emotionDetector get operation with text query string parameter'''
-    text = request.args.get('text')
+    text = request.args.get('textToAnalyze')
     scores = emotion_detector(text)
 
     if scores['dominant_emotion'] is None:
         return "Invalid text! Please try again!"
 
-    return return (f"For the given statement, the system response is 'anger': {scores['anger']}, "
+    return (f"For the given statement, the system response is 'anger': {scores['anger']}, "
             f"'disgust': {scores['disgust']}, 'fear': {scores['fear']}, 'joy': {scores['joy']} and 'sadness': {scores['sadness']}. "
             f"The dominant emotion is {scores['dominant_emotion']}.")
 
