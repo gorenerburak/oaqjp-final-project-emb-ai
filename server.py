@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request
+'''server.py file'''
+from flask import Flask, request
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emotion_detector_route():
+    ''' emotionDetector get operation with text query string parameter'''
     text = request.args.get('text')
     scores = emotion_detector(text)
 
