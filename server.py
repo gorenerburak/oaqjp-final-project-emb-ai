@@ -6,7 +6,12 @@ app = Flask("Emotion Detector")
 @app.route("/emotionDetector")
 def emotion_detector_route():
     text = request.args.get('text')
-    return emotion_detector(text)
+    scores = emotion_detector(text)
+
+    if scores['dominant_emotion'] is None:
+        return "Invalid text! Please try again!"
+
+    return scores
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
